@@ -80,6 +80,7 @@ Brand.find_each do |brand|
     confirmed_at: DateTime.now
   })
   manager.add_role :brand_manager, brand
+  []]']]]'
 end
 
 puts "Creating Products..."
