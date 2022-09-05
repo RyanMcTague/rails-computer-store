@@ -82,3 +82,4 @@ gem "rolify"
 gem "state_machines", "~> 0.5.0"
 gem "state_machines-activerecord", "~> 0.8.0"
 gem 'faker'
+gem "hashid-rails", "~> 1.4"

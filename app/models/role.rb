@@ -13,8 +13,17 @@ class Role < ApplicationRecord
   scopify
 
   validate :no_resource_name, if: -> { self.resource.nil? }
+  validate :brand_name, if: -> { self.resource.is_a? Department }
 
   private
+
+  def brand_name
+    roles = [:brand_manager]
+    unless roles.include?(self.name.to_sym)
+      self.errors.add(self.name, "is not a valid role name")
+    end
+  end
+
   def no_resource_name
     roles = [:admin, :staff]
     unless roles.include?(self.name.to_sym)

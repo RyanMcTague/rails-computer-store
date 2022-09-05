@@ -1,7 +1,8 @@
 class Brand < ApplicationRecord
   validates :name, presence: true, uniqueness: { case_senitive: false }
   validates :identifier, presence: true, uniqueness: { case_senitive: false }
-
+  has_many :products
+  has_many :departments, through: :products
 
   state_machine :state, initial: :active do
     state :active

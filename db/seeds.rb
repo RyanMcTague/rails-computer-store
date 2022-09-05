@@ -67,3 +67,33 @@ graphics_cards_department = Department.create!({
   department_type: :components,
   description: Faker::Lorem.paragraph(sentence_count: 5)
 })
+
+puts "Creating Department Managers..."
+###=======================
+Brand.find_each do |brand|
+  manager = User.create!({
+    email: "#{brand.name.downcase.sub(" ", "_")}@example.com",
+    firstname: Faker::Name.first_name,
+    lastname: Faker::Name.last_name,
+    password: PASSWORD,
+    password_confirmation: PASSWORD,
+    confirmed_at: DateTime.now
+  })
+  manager.add_role :brand_manager, brand
+end
+
+puts "Creating Products..."
+###=======================
+intel_i7_processor = Product.create!({
+  name: "Intel Core i7-11700K",
+  description: Faker::Lorem.paragraph(sentence_count: 5),
+  brand: intel_brand,
+  department: cpus_department
+})
+
+intel_i5_processor = Product.create!({
+  name: "Intel Core i5-10400F",
+  description: Faker::Lorem.paragraph(sentence_count: 5),
+  brand: intel_brand,
+  department: cpus_department
+})
